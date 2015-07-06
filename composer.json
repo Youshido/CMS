@@ -1,0 +1,24 @@
+{
+  "name": "youshido/cms",
+  "type": "symfony-bundle",
+  "description": "Bundle for easy integrations CMS in symfony project",
+  "keywords": ["cms", "symfony", "bundle"],
+  "homepage": "https://github.com/Youshido/AdminBundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexandr Viniychuk",
+      "email": "a@viniychuk.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "symfony/framework-bundle": "~2.3",
+    "doctrine/doctrine-bundle": "~1.3",
+    "symfony/form": "~2.3",
+    "youshido/doctrine-extension" : "dev-master"
+  },
+  "autoload": {
+    "psr-4": { "Youshido\\CMSBundle\\": "" }
+  }
+}
