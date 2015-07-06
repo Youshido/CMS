@@ -113,7 +113,7 @@ class AttributeService
      */
     public static function getAttributeForType($type, $info)
     {
-        $className = "Youshido\\Bundle\\CMSBundle\\Structure\\Attribute\\" . ucfirst($type) . 'Attribute';
+        $className = "Youshido\\CMSBundle\\Structure\\Attribute\\" . ucfirst($type) . 'Attribute';
         if (class_exists($className)) {
             $object = new $className($info);
             return $object;

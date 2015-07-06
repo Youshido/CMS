@@ -91,6 +91,7 @@ class View implements AttributedInterface
         $this->_attributedConstruct();
         $this->subviews = new ArrayCollection();
         $this->isVisible = true;
+        $this->position = 0;
     }
 
     public function isSubviewsAllowed()
