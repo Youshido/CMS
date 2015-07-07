@@ -29,7 +29,7 @@ class AttributeService
 
     public function saveAttributesWithValues(View $object, Request $request)
     {
-        $form = $this->container->get('cms.form.helper')->getVarsFormForAttributes($object);
+        $form = $this->container->get('admin.form.helper')->getVarsFormForAttributes($object);
         $form->handleRequest($request);
 
         $object->setAttributes($object->getAttributes());
@@ -88,7 +88,7 @@ class AttributeService
 
     public function loadHandler(AttributedInterface $object, Request $request)
     {
-        $object->attributesForm = $this->container->get('cms.form.helper')->getVarsFormForAttributes($object)->createView();
+        $object->attributesForm = $this->container->get('admin.form.helper')->getVarsFormForAttributes($object)->createView();
 
         return [
             'attributesForm' => $object->attributesForm,
@@ -101,8 +101,11 @@ class AttributeService
             "text"     => "Text field",
             "textarea" => "Text area",
             "image"    => "Image",
+            "file"     => "File",
+            "checkbox" => "Checkbox",
             "choice"   => "Choice",
             "hidden"   => "Hidden",
+            "html"     => "HTML",
         ];
     }
 
