@@ -61,7 +61,15 @@ class BaseAttribute
 
     public function getFormWidgetInfo()
     {
-        return [$this->name => ['name' => $this->name, 'type' => $this->type, 'options' => []]];
+        return [
+            $this->name => [
+                'name' => $this->name,
+                'type' => $this->type,
+                'required' => $this->required,
+                'options' => [
+
+                ]
+            ]];
     }
 
     public function getType()

@@ -74,7 +74,7 @@ class StructureService
 
                 $view->setParent($object);
                 $view->setObjectTitle($viewSource->name);
-                $view->attributesForm = $this->container->get('cms.form.helper')->getVarsFormForAttributes($view);
+                $view->attributesForm = $this->container->get('admin.form.helper')->getVarsFormForAttributes($view);
             }else{
                 $updatedSubViews[] = $view->getId();
             }
@@ -120,7 +120,7 @@ class StructureService
     public function loadHandler(View $object, Request $request)
     {
         foreach ($object->getSubviews() as $view) {
-            $view->attributesForm = $this->container->get('cms.form.helper')->getVarsFormForAttributes($view);
+            $view->attributesForm = $this->container->get('admin.form.helper')->getVarsFormForAttributes($view);
         }
         return [
             'viewsSource' => $this->getAvailableSubviewsForObject($object)

@@ -10,11 +10,6 @@ services:
       calls:
         - [ setContainer, [ @service_container ] ]
 
-  cms.form.helper:
-      class: Youshido\CMSBundle\Service\FormHelperService
-      calls:
-        - [ setContainer, [ @service_container ] ]
-
   cms.provider.page:
       class: Youshido\CMSBundle\Service\Provider\PageProvider
       calls:
