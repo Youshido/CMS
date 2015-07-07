@@ -19,8 +19,8 @@ class AttributeTypeForm extends AbstractType {
             ->add('type', 'choice', [
                 'choices' => AttributeService::getAvailableTypes(),
             ])
-            ->add('system', 'checkbox')
-            ->add('default_value', 'text')
+            ->add('system', 'checkbox', ['required' => false])
+            ->add('default_value', 'text', ['required' => false])
         ;
     }
 

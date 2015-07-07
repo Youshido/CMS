@@ -101,6 +101,8 @@ class AttributeService
             "text"     => "Text field",
             "textarea" => "Text area",
             "image"    => "Image",
+            "file"     => "File",
+            "checkbox" => "Checkbox",
             "choice"   => "Choice",
             "hidden"   => "Hidden",
         ];
