@@ -9,6 +9,9 @@
 namespace Youshido\CMSBundle\Structure\Attribute;
 
 
+use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
+use Symfony\Component\Form\FormBuilderInterface;
+
 class BaseAttribute
 {
     protected $title;
@@ -49,9 +52,9 @@ class BaseAttribute
             if (empty($this->value)) $this->value = $this->defaultValue;
         }
 
-        if ($this->type && !$this->name) {
-            throw new \BadMethodCallException('You can not create ' . $this->type . ' attribute without name');
-        }
+//        if ($this->type && !$this->name) {
+//            throw new \BadMethodCallException('You can not create ' . $this->type . ' attribute without name');
+//        }
     }
 
     public function getViewData()
@@ -194,6 +197,4 @@ class BaseAttribute
     {
         $this->defaultValue = $defaultValue;
     }
-
-
 }

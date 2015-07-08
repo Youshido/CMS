@@ -11,7 +11,11 @@ namespace Youshido\CMSBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Youshido\CMSBundle\Entity\View\ContentView;
+use Youshido\CMSBundle\Service\AttributeService;
 
 class ViewController extends Controller
 {
@@ -25,6 +29,23 @@ class ViewController extends Controller
     {
         $object = $this->getDoctrine()->getRepository('YCMSBundle:View\View')->find($id);
         return new JsonResponse('hello');
+    }
+
+
+    /**
+     * @Route("/cms/get-attribute-form", name="cms.addAttributeForm")
+     * @param Request $request
+     * @return Response
+     */
+    public function addAttributeAction(Request $request)
+    {
+        $type = $request->get('type');
+
+        if(in_array($type, array_keys(AttributeService::getAvailableTypes()))){
+            return $this->render(sprintf('YCMSBundle:_attributes:%s.html.twig', $type));
+        }else{
+            throw new NotFoundHttpException();
+        }
     }
 
 }

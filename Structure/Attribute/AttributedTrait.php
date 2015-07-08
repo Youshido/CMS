@@ -36,13 +36,16 @@ trait AttributedTrait
         $this->attributes = new ArrayCollection();
 
         foreach ($attributes as $key => $info) {
-            if (is_object($info) && $info instanceof BaseAttribute) {
+            if (is_array($info) && array_key_exists('type', $info)) {
+                $source = AttributeService::getAttributeForType($info['type'], $info);
+            }elseif(is_object($info) && $info instanceof BaseAttribute){
                 $source = AttributeService::getAttributeForType($info->getType(), $info);
 
                 if($source) {
                     $source->setValue($info->getValue());
                 }
             }
+
             if (!empty($source)) {
                 $this->attributes[$key] = clone $source;
             }

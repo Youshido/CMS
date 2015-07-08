@@ -9,6 +9,8 @@
 namespace Youshido\CMSBundle\Structure\Attribute;
 
 
+use Symfony\Component\Form\FormBuilderInterface;
+
 class CheckboxAttribute extends BaseAttribute
 {
 

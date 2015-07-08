@@ -24,7 +24,15 @@ class AttributeService
 
     public function saveAttributesStructure(AttributedInterface $object, Request $request)
     {
-        $object->setAttributes($object->getAttributes());
+        $serializedAttributes = $request->get('blocksSerialized', false);
+
+        if($serializedAttributes){
+            $attributes = json_decode($serializedAttributes, true);
+
+            $object->setAttributes($attributes);
+        }
+
+
     }
 
     public function saveAttributesWithValues(View $object, Request $request)
@@ -66,7 +74,7 @@ class AttributeService
         }
     }
 
-    public function loadEditorTab($object, Request $request)
+    public function loadEditorTab2($object, Request $request)
     {
         $adminContext = $this->container->get('adminContext');
 
@@ -84,6 +92,29 @@ class AttributeService
                 'template' => '@YAdmin/_fragments/attributes.html.twig',
             ],
         ], 'tabs');
+    }
+
+
+    /**
+     * @param $object AttributedTrait
+     * @param Request $request
+     */
+    public function loadEditorTab($object, Request $request)
+    {
+        $adminContext = $this->container->get('adminContext');
+
+        $module = $adminContext->getActiveModule();
+        $adminContext->updateModuleStructure($module['name'], $object->getAttributes(), 'attributes');
+
+        $adminContext->updateModuleStructure($module['name'], [
+            'attributes' => [
+                'title'    => 'Attributes',
+                'template' => '@YAdmin/_fragments/attributes.html.twig',
+            ],
+        ], 'tabs');
+
+        //for add attribute buttons
+        $adminContext->updateModuleStructure($module['name'], self::getAvailableTypes(), 'attributeTypes');
     }
 
     public function loadHandler(AttributedInterface $object, Request $request)
@@ -105,7 +136,6 @@ class AttributeService
             "checkbox" => "Checkbox",
             "choice"   => "Choice",
             "hidden"   => "Hidden",
-            "html"     => "HTML",
         ];
     }
 
@@ -114,7 +144,7 @@ class AttributeService
      * @param $info
      * @return BaseAttribute
      */
-    public static function getAttributeForType($type, $info)
+    public static function getAttributeForType($type, $info = [])
     {
         $className = "Youshido\\CMSBundle\\Structure\\Attribute\\" . ucfirst($type) . 'Attribute';
         if (class_exists($className)) {

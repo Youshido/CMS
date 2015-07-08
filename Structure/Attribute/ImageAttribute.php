@@ -8,6 +8,7 @@
 
 namespace Youshido\CMSBundle\Structure\Attribute;
 
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Youshido\UploadableBundle\Annotations as Youshido;
 
@@ -26,5 +27,15 @@ class ImageAttribute extends FileAttribute
      * )})
      */
     protected $value;
+
+    public function getFormWidgetInfo()
+    {
+        $options = parent::getFormWidgetInfo();
+
+        $options[$this->name]['entity'] = 'Youshido\\CMSBundle\\Structure\\Attribute\\ImageAttribute';
+        $options[$this->name]['entity_property'] = "value";
+
+        return $options;
+    }
 
 }

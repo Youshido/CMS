@@ -1,0 +1,14 @@
+<li class="list-group-item clearfix attribute-item">
+    <div>{{ type|capitalize }}</div>
+    <div class="form form-inline pull-left">
+        <div class="form-group">
+            <div>
+                <label for="form_name">Name</label>
+                <input type="text" id="form_name" name="name" {% if attr.name is defined %} value="{{ attr.name }}" {% endif %} >
+            </div>
+
+            <input type="hidden" name="type" value="{{ type }}">
+        </div>
+    </div>
+    <a href="#" class="pull-right btn btn-rounded btn-dark btn-sm delete-attribute-handler">delete</a>
+</li>
