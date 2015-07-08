@@ -31,8 +31,6 @@ class AttributeService
 
             $object->setAttributes($attributes);
         }
-
-
     }
 
     public function saveAttributesWithValues(View $object, Request $request)
@@ -40,7 +38,8 @@ class AttributeService
         $form = $this->container->get('admin.form.helper')->getVarsFormForAttributes($object);
         $form->handleRequest($request);
 
-        $object->setAttributes($object->getAttributes());
+        //$this->saveAttributesStructure($object, $request);
+        //$object->setAttributes($object->getAttributes());
         $this->parseAttributesFromForm($object, $form);
     }
 
@@ -131,7 +130,7 @@ class AttributeService
         return [
             "text"     => "Text field",
             "textarea" => "Text area",
-            "html"     => "Html",
+            "html"     => "html",
             "image"    => "Image",
             "file"     => "File",
             "checkbox" => "Checkbox",

@@ -33,24 +33,44 @@ trait AttributedTrait
 
     public function setAttributes($attributes)
     {
-        $this->attributes = new ArrayCollection();
+        $newAttributes = new ArrayCollection();
 
         foreach ($attributes as $key => $info) {
-            if (is_array($info) && array_key_exists('type', $info)) {
-                $source = AttributeService::getAttributeForType($info['type'], $info);
-            }elseif(is_object($info) && $info instanceof BaseAttribute){
-                $source = AttributeService::getAttributeForType($info->getType(), $info);
 
-                if($source) {
-                    $source->setValue($info->getValue());
+            if (is_array($info) && array_key_exists('type', $info)) {
+                $newAttribute = AttributeService::getAttributeForType($info['type'], $info);
+            } elseif (is_object($info) && $info instanceof BaseAttribute) {
+                $newAttribute = AttributeService::getAttributeForType($info->getType(), $info);
+
+                if ($newAttribute) {
+                    $newAttribute->setValue($info->getValue());
                 }
             }
 
-            if (!empty($source)) {
-                $this->attributes[$key] = clone $source;
+            if (!empty($newAttribute)) {
+                $existedAttribute = $this->findAttributeWithName(is_object($info) ? $info->getName() : $info['name']);
+                if (!empty($existedAttribute)) {
+                    $newAttribute->setValue($existedAttribute->getValue());
+                }
+                $newAttributes[$key] = clone $newAttribute;
             }
         }
+        $this->attributes = $newAttributes;
         return $this;
+    }
+
+    /**
+     * @param $name
+     * @return BaseAttribute|null
+     */
+    public function findAttributeWithName($name)
+    {
+        foreach($this->attributes as $attr) {
+            if ($attr->getName() == $name) {
+                return $attr;
+            }
+        }
+        return null;
     }
 
     public function applyAttributesToObject()
@@ -63,7 +83,7 @@ trait AttributedTrait
 
     public function loadAttributesDefaultValues()
     {
-        foreach($this->getAttributes() as $attr) {
+        foreach ($this->getAttributes() as $attr) {
             if (!$attr->getValue()) {
                 $attr->setValue($attr->getDefaultValue());
             }
