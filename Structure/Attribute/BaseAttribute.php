@@ -20,6 +20,7 @@ class BaseAttribute
     protected $value;
     protected $name;
     protected $defaultValue;
+    protected $description;
     /**
      * @var bool
      */
@@ -40,6 +41,7 @@ class BaseAttribute
                 $this->required     = $params->isRequired();
                 $this->system       = $params->isSystem();
                 $this->defaultValue = $params->getDefaultValue();
+                $this->description  = $params->getDescription();
             } else {
                 $this->title        = empty($params['title']) ? null : $params['title'];
                 $this->name         = empty($params['name']) ? null : $params['name'];
@@ -47,6 +49,7 @@ class BaseAttribute
                 $this->required     = empty($params['required']) ? false : $params['required'];
                 $this->system       = empty($params['system']) ? false : $params['system'];
                 $this->defaultValue = empty($params['defaultValue']) ? false : $params['defaultValue'];
+                $this->description  = empty($params['description']) ? false : $params['description'];
             }
             if (empty($this->title)) $this->title = $this->name;
             if (empty($this->value)) $this->value = $this->defaultValue;
@@ -66,12 +69,12 @@ class BaseAttribute
     {
         return [
             $this->name => [
-                'name' => $this->name,
-                'type' => $this->type,
+                'name'     => $this->name,
+                'type'     => $this->type,
                 'required' => $this->required,
-                'options' => [
+                'options'  => [
 
-                ]
+                ],
             ]];
     }
 
@@ -197,4 +200,24 @@ class BaseAttribute
     {
         $this->defaultValue = $defaultValue;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     * @return BaseAttribute
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+
 }
