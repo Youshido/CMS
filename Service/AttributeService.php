@@ -26,7 +26,7 @@ class AttributeService
     {
         $serializedAttributes = $request->get('blocksSerialized', false);
 
-        if($serializedAttributes){
+        if ($serializedAttributes) {
             $attributes = json_decode($serializedAttributes, true);
 
             $object->setAttributes($attributes);
@@ -131,6 +131,7 @@ class AttributeService
         return [
             "text"     => "Text field",
             "textarea" => "Text area",
+            "html"     => "html",
             "image"    => "Image",
             "file"     => "File",
             "checkbox" => "Checkbox",
