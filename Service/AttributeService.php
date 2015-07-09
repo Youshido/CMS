@@ -130,7 +130,7 @@ class AttributeService
         return [
             "text"     => "Text field",
             "textarea" => "Text area",
-            "html"     => "html",
+            "html"     => "Html",
             "image"    => "Image",
             "file"     => "File",
             "checkbox" => "Checkbox",

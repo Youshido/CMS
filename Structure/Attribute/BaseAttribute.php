@@ -72,6 +72,7 @@ class BaseAttribute
                 'name'     => $this->name,
                 'type'     => $this->type,
                 'required' => $this->required,
+                'description' => $this->description ?: false,
                 'options'  => [
 
                 ],

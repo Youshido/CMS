@@ -19,6 +19,12 @@
                 <input type="text" id="form_default_value" name="defaultValue" {% if attr.defaultValue is defined %} value="{{ attr.defaultValue }}" {% endif %}>
             </div>
         </div>
+        <div class="form-group">
+            <div>
+                <label for="form_name">Description</label>
+                <input type="text" id="form_description" name="description" {% if attr.description is defined %} value="{{ attr.description }}" {% endif %}>
+            </div>
+        </div>
 
         <input type="hidden" name="type" value="{{ type }}">
     </div>
