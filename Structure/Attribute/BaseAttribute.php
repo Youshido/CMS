@@ -46,10 +46,11 @@ class BaseAttribute
                 $this->title        = empty($params['title']) ? null : $params['title'];
                 $this->name         = empty($params['name']) ? null : $params['name'];
                 $this->value        = empty($params['value']) ? null : $params['value'];
-                $this->required     = empty($params['required']) ? false : $params['required'];
                 $this->system       = empty($params['system']) ? false : $params['system'];
+                $this->required     = empty($params['required']) ? false : $params['required'];
                 $this->defaultValue = empty($params['defaultValue']) ? false : $params['defaultValue'];
                 $this->description  = empty($params['description']) ? false : $params['description'];
+                $this->config       = empty($params['config']) ? false : $params['config'];
             }
             if (empty($this->title)) $this->title = $this->name;
             if (empty($this->value)) $this->value = $this->defaultValue;

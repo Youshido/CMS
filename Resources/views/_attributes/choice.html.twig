@@ -1,0 +1,93 @@
+<li class="list-group-item clearfix attribute-item">
+    <div>{{ 'choice'|capitalize }}</div>
+    <div class="form form-inline pull-left">
+        <div class="form-group">
+            <div>
+                <label for="form_name">Name</label>
+                <input type="text" id="form_name" name="name" {% if attr.name is defined %} value="{{ attr.name }}" {% endif %} >
+            </div>
+            <input type="hidden" name="type" value="{{ 'choice' }}">
+        </div>
+
+        <div class="clear"></div>
+        <div class="form-group">
+            <div>
+                <label for="form_multiple">Multiple</label>
+                <input id="form_multiple" type="checkbox" name="config[multiple]">
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="form-group">
+            <div>
+                <label for="form_expanded">Expanded</label>
+                <input id="form_expanded" type="checkbox" name="config[expanded]">
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="form-group">
+            <div>
+                <label for="form_name">Description</label>
+                <input type="text" id="form_description" name="description" {% if attr.description is defined %} value="{{ attr.description }}" {% endif %}>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="form-group">
+            <div>
+                <select name="config[type]" class="change-attribute-type-handler">
+                    <option value="content_type">Content Type</option>
+                    <option value="content_view">Content View</option>
+                    <option value="entity">Entity</option>
+                    <option value="key_value">Key Value</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="type-options ignore" data-type="content_view" style="display: none">
+            <div class="clear"></div>
+            <div class="form-group">
+                <div>
+                    <label for="form_parent">Parent</label>
+                    <input type="text" id="form_parent" name="config[parent]">
+                </div>
+            </div>
+        </div>
+
+        <div class="type-options ignore" data-type="entity" style="display: none">
+            <div class="clear"></div>
+            <div class="form-group">
+                <div>
+                    <label for="form_entity">Entity</label>
+                    <input type="text" id="form_entity" name="config[entity]">
+                </div>
+                <div>
+                    <label for="form_method">Method</label>
+                    <input type="text" id="form_method" name="config[method]">
+                </div>
+                <div>
+                    <label for="form_service">Service</label>
+                    <input type="text" id="form_service" name="config[service]">
+                </div>
+            </div>
+        </div>
+
+        <div class="type-options ignore" data-type="key_value" style="display: none">
+            <div class="clear"></div>
+            <div class="form-group">
+                <div class="row-items">
+                    <div class="item-row">
+                        <input type="text" name="config[items][key][]">
+                        <input type="text" name="config[items][value][]">
+                        <span class="remove-row-handler">x</span>
+                    </div>
+                </div>
+
+                <span class="add-row-handler">+ add</span>
+            </div>
+        </div>
+
+    </div>
+    <a href="#" class="pull-right btn btn-rounded btn-dark btn-sm delete-attribute-handler">delete</a>
+</li>
