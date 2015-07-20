@@ -1,5 +1,10 @@
 services:
 
+  cms.admin.halper:
+      class: Youshido\CMSBundle\Service\AdminHelper
+      calls:
+        - [ setContainer, [ @service_container ] ]
+
   cms.attribute:
       class: Youshido\CMSBundle\Service\AttributeService
       calls:

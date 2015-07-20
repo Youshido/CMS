@@ -115,6 +115,7 @@ class StructureService
                 'template' => '@YAdmin/_fragments/structure.html.twig',
             ],
         ], 'tabs');
+
     }
 
     public function loadHandler(View $object, Request $request)

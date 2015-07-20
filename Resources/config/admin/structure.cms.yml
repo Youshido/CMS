@@ -1,0 +1,121 @@
+modules:
+  cms:
+    title: CMS
+    type: Group
+
+  cms-pages-constructor:
+    title: Page constructor
+    icon: fa fa-columns
+    type: dictionary
+    group: cms
+    entity: Youshido\CMSBundle\Entity\View\Page
+    tabs:
+      general:
+        title: Page information
+        template: @YAdmin/Page/_view.html.twig
+    handlers:
+      load:
+#        - [ @cms.attribute, loadEditorTab ]
+        - [ @cms.attribute ]
+        - [ @cms.structure, loadEditorTab ]
+        - [ @cms.structure ]
+      render:
+        - [ @cms.structure, renderHandler ]
+      save:
+        - [ @cms.attribute, saveAttributesWithValues ]
+        - [ @cms.structure ]
+    columns:
+      objectTitle: ~
+    actions:
+      default:
+        show: [objectTitle]
+      add: ~
+      edit:
+        hide: [title]
+
+  cms-view-constructor:
+    private: true
+    nested: true
+    title: Page constructor
+    icon: fa fa-columns
+    type: dictionary
+    entity: Youshido\CMSBundle\Entity\View\View
+    back_url_handler: [ @cms.admin.halper, getBackUrl ]
+    tabs:
+      general:
+        title: Page information
+        template: @YAdmin/Page/_view.html.twig
+    handlers:
+      load:
+        - [ @cms.attribute, loadEditorTab ]
+        - [ @cms.attribute ]
+        - [ @cms.structure, loadEditorTab ]
+        - [ @cms.structure ]
+      render:
+        - [ @cms.structure, renderHandler ]
+      save:
+        - [ @cms.attribute, saveAttributesStructure ]
+        - [ @cms.attribute, saveAttributesWithValues ]
+        - [ @cms.structure ]
+    columns:
+      objectTitle: ~
+    actions:
+      default:
+        show: [objectTitle]
+      add: ~
+      edit:
+        hide: [title]
+
+
+  cms-content-views:
+    title: Content views
+    group: cms
+    type: dictionary
+    icon: fa fa-th-large
+    entity: Youshido\CMSBundle\Entity\View\ContentView
+    where: 't.parent is null'
+    security: ROLE_ROOT
+    tabs:
+        general:
+          title: Content view name
+    columns:
+      objectTitle: ~
+    handlers:
+      load:
+        - [ @cms.attribute, loadEditorTab ]
+      save:
+        - [ @cms.attribute, saveAttributesStructure ]
+    actions:
+      default:
+        show: [objectTitle]
+      add: ~
+      edit: ~
+      remove: ~
+      duplicate: ~
+
+  cms-content-types:
+    title: Content types
+    group: cms
+    type: dictionary
+    icon: imoon imoon-stack
+    entity: Youshido\CMSBundle\Entity\View\ContentType
+    security: ROLE_ROOT
+    tabs:
+      general:
+        title: Content type name
+    columns:
+      title: ~
+      name: ~
+    handlers:
+      load:
+        - [ @cms.attribute, loadEditorTab ]
+        - [ @cms.attribute ]
+      save:
+        - [ @cms.attribute, saveAttributesStructure ]
+    actions:
+      default:
+        show: [title]
+      add: ~
+      edit: ~
+      remove: ~
+      duplicate: ~
