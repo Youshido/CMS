@@ -9,6 +9,7 @@ namespace Youshido\CMSBundle\Service;
 
 
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Youshido\CMSBundle\Entity\View\CollectionView;
 use Youshido\CMSBundle\Entity\View\View;
 
 class AdminHelper extends ContainerAware
@@ -21,17 +22,27 @@ class AdminHelper extends ContainerAware
         $adminContext = $this->container->get('adminContext');
         $module = $adminContext->getActiveModule();
 
-        if($id = $request->get('id', false)){
+        if ($id = $request->get('id', false)) {
             /** @var View $object */
             $object = $this->container->get('doctrine')->getRepository($module['entity'])
                 ->find($id);
 
-            if($object){
-                if($object->getParent()){
-                    return $this->container->get('router')->generate('admin.dictionary.edit', [
-                        'module' => 'cms-pages-constructor',
-                        'id' => $object->getParent()->getId()
-                    ]);
+            if ($object) {
+                if ($object->getParent()) {
+
+                    switch (true) {
+                        case $object->getParent() instanceof CollectionView:
+                            return $this->container->get('router')->generate('admin.dictionary.edit', [
+                                'module' => 'cms-view-constructor',
+                                'id' => $object->getParent()->getId()
+                            ]);
+
+                        default:
+                            return $this->container->get('router')->generate('admin.dictionary.edit', [
+                                'module' => 'cms-pages-constructor',
+                                'id' => $object->getParent()->getId()
+                            ]);
+                    }
                 }
             }
         }
