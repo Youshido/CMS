@@ -70,21 +70,13 @@ modules:
   cms-content-views:
     title: Content views
     group: cms
-    type: dictionary
+    type: cms-view
     icon: fa fa-th-large
     entity: Youshido\CMSBundle\Entity\View\ContentView
     where: 't.parent is null'
-    security: ROLE_ROOT
-    tabs:
-        general:
-          title: Content view name
+    security: ROLE_SUPER_ADMIN
     columns:
       objectTitle: ~
-    handlers:
-      load:
-        - [ @cms.attribute, loadEditorTab ]
-      save:
-        - [ @cms.attribute, saveAttributesStructure ]
     actions:
       default:
         show: [objectTitle]
@@ -96,22 +88,13 @@ modules:
   cms-content-types:
     title: Content types
     group: cms
-    type: dictionary
+    type: cms-view
     icon: imoon imoon-stack
     entity: Youshido\CMSBundle\Entity\View\ContentType
-    security: ROLE_ROOT
-    tabs:
-      general:
-        title: Content type name
+    security: ROLE_SUPER_ADMIN
     columns:
       title: ~
       name: ~
-    handlers:
-      load:
-        - [ @cms.attribute, loadEditorTab ]
-        - [ @cms.attribute ]
-      save:
-        - [ @cms.attribute, saveAttributesStructure ]
     actions:
       default:
         show: [title]

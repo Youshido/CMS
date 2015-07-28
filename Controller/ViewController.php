@@ -31,7 +31,6 @@ class ViewController extends Controller
         return new JsonResponse('hello');
     }
 
-
     /**
      * @Route("/cms/get-attribute-form", name="cms.addAttributeForm")
      * @param Request $request
@@ -47,5 +46,4 @@ class ViewController extends Controller
             throw new NotFoundHttpException();
         }
     }
-
 }

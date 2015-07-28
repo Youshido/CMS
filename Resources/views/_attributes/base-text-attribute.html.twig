@@ -1,28 +1,36 @@
 <li class="list-group-item clearfix attribute-item">
     <div>{{ type|capitalize }}</div>
-    <div class="form form-inline pull-left">
+    <div class="form pull-left">
         <div class="form-group">
             <div>
-                <label for="form_name">Name</label>
-                <input type="text" id="form_name" name="name" {% if attr.name is defined %} value="{{ attr.name }}" {% endif %}>
-            </div>
-        </div>
-        <div class="form-group ml15">
-            <div>
-                <label for="form_system">System</label>
-                <input type="checkbox" id="form_system" name="system" {% if attr.system is defined and attr.system %} checked {% endif %} >
-            </div>
-        </div>
-        <div class="form-group ml15">
-            <div>
-                <label for="form_default_value">Default value</label>
-                <input type="text" id="form_default_value" name="defaultValue" {% if attr.defaultValue is defined %} value="{{ attr.defaultValue }}" {% endif %}>
+                <label class="col-md-5 control-label required" for="form_name">Name</label>
+                <div class="col-md-7">
+                    <input type="text" id="form_name" required name="name" {% if attr.name is defined %} value="{{ attr.name }}" {% endif %}>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <div>
-                <label for="form_name">Description</label>
-                <input type="text" id="form_description" name="description" {% if attr.description is defined %} value="{{ attr.description }}" {% endif %}>
+                <label class="col-md-5 control-label required" for="form_system">System</label>
+                <div class="col-md-7">
+                    <input type="checkbox" id="form_system" name="system" {% if attr.system is defined and attr.system %} checked {% endif %} >
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label class="col-md-5 control-label required" for="form_default_value">Default value</label>
+                <div class="col-md-7">
+                    <input type="text" id="form_default_value" name="defaultValue" {% if attr.defaultValue is defined %} value="{{ attr.defaultValue }}" {% endif %}>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label class="col-md-5 control-label required" for="form_name">Description</label>
+                <div class="col-md-7">
+                    <input type="text" id="form_description" name="description" {% if attr.description is defined %} value="{{ attr.description }}" {% endif %}>
+                </div>
             </div>
         </div>
 

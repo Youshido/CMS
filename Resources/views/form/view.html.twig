@@ -1,0 +1,52 @@
+{% extends '@YAdmin/_layout.html.twig' %}
+
+{% block content %}
+<div class="row">
+    <div class="panel">
+        {{ form_start(form, {'attr' : {'id' : 'form-list-view', 'class' : 'form-horizontal'}}) }}
+
+        <div class="panel-body">
+            <div class="tab-content pn br-n">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <span class="panel-title">Standard Fields</span>
+                    </div>
+                    <div class="panel-body">
+                        {{ include('@YAdmin/_fragments/formFields.html.twig') }}
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <span class="panel-title">Attributes</span>
+                    </div>
+                    <div class="panel-body">
+                        {{ include('YCMSBundle:form:attributes.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="{{ adminContext.getBackUrl() }}" class="btn btn-rounded btn-default btn-block button-back-handler pull-right"
+                            style="max-width: 100px;">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-rounded btn-primary btn-block light"
+                            style="max-width: 130px;">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+    {% endblock %}

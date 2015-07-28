@@ -38,8 +38,6 @@ class AttributeService
         $form = $this->container->get('admin.form.helper')->getVarsFormForAttributes($object);
         $form->handleRequest($request);
 
-        //$this->saveAttributesStructure($object, $request);
-        //$object->setAttributes($object->getAttributes());
         $this->parseAttributesFromForm($object, $form);
     }
 
@@ -71,58 +69,6 @@ class AttributeService
         if ($needRefresh) {
             $object->refreshAttributes();
         }
-    }
-
-    public function loadEditorTab2($object, Request $request)
-    {
-        $adminContext = $this->container->get('adminContext');
-
-        $module = $adminContext->getActiveModule();
-        $adminContext->updateModuleStructure($module['name'], [
-            'attributes' => [
-                'type'   => 'collection',
-                'form'   => 'Youshido\CMSBundle\Form\AttributeTypeForm',
-                'custom' => true,
-            ],
-        ], 'columns');
-        $adminContext->updateModuleStructure($module['name'], [
-            'attributes' => [
-                'title'    => 'Attributes',
-                'template' => '@YAdmin/_fragments/attributes.html.twig',
-            ],
-        ], 'tabs');
-    }
-
-
-    /**
-     * @param $object AttributedTrait
-     * @param Request $request
-     */
-    public function loadEditorTab($object, Request $request)
-    {
-        $adminContext = $this->container->get('adminContext');
-
-        $module = $adminContext->getActiveModule();
-        $adminContext->updateModuleStructure($module['name'], $object->getAttributes(), 'attributes');
-
-        $adminContext->updateModuleStructure($module['name'], [
-            'attributes' => [
-                'title'    => 'Attributes',
-                'template' => '@YAdmin/_fragments/attributes.html.twig',
-            ],
-        ], 'tabs');
-
-        //for add attribute buttons
-        $adminContext->updateModuleStructure($module['name'], self::getAvailableTypes(), 'attributeTypes');
-    }
-
-    public function loadHandler(AttributedInterface $object, Request $request)
-    {
-        $object->attributesForm = $this->container->get('admin.form.helper')->getVarsFormForAttributes($object)->createView();
-
-        return [
-            'attributesForm' => $object->attributesForm,
-        ];
     }
 
     public static function getAvailableTypes()
