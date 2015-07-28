@@ -71,6 +71,37 @@ class AttributeService
         }
     }
 
+    /**
+     * @param $object AttributedTrait
+     * @param Request $request
+     */
+    public function loadEditorTab($object, Request $request)
+    {
+        $adminContext = $this->container->get('adminContext');
+
+        $module = $adminContext->getActiveModule();
+        $adminContext->updateModuleStructure($module['name'], $object->getAttributes(), 'attributes');
+
+        $adminContext->updateModuleStructure($module['name'], [
+            'attributes' => [
+                'title'    => 'Attributes',
+                'template' => '@YCMS/form/attributes-tab.html.twig',
+            ],
+        ], 'tabs');
+
+        //for add attribute buttons
+        $adminContext->updateModuleStructure($module['name'], self::getAvailableTypes(), 'attributeTypes');
+    }
+
+    public function loadHandler(AttributedInterface $object, Request $request)
+    {
+        $object->attributesForm = $this->container->get('admin.form.helper')->getVarsFormForAttributes($object)->createView();
+
+        return [
+            'attributesForm' => $object->attributesForm,
+        ];
+    }
+
     public static function getAvailableTypes()
     {
         return [

@@ -5,25 +5,18 @@
     <div class="panel">
         {{ form_start(form, {'attr' : {'id' : 'form-list-view', 'class' : 'form-horizontal'}}) }}
 
+        <div class="panel-heading">
+            <span class="panel-title">Standard Fields</span>
+        </div>
         <div class="panel-body">
             <div class="tab-content pn br-n">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <span class="panel-title">Standard Fields</span>
-                    </div>
-                    <div class="panel-body">
-                        {{ include('@YAdmin/_fragments/formFields.html.twig') }}
-                    </div>
-                </div>
+                {{ include('@YAdmin/_fragments/formFields.html.twig') }}
 
-                <div class="panel">
-                    <div class="panel-heading">
-                        <span class="panel-title">Attributes</span>
-                    </div>
-                    <div class="panel-body">
-                        {{ include('YCMSBundle:form:attributes.html.twig') }}
-                    </div>
-                </div>
+                <hr class="short">
+                <h4>Attributes</h4>
+                <br>
+
+                {{ include('YCMSBundle:form:attributes.html.twig') }}
             </div>
         </div>
         <div class="panel-footer">

@@ -12,7 +12,7 @@ modules:
     tabs:
       general:
         title: Page information
-        template: @YAdmin/Page/_view.html.twig
+        template: @YCMS/page/view.html.twig
     handlers:
       load:
 #        - [ @cms.attribute, loadEditorTab ]
@@ -44,7 +44,7 @@ modules:
     tabs:
       general:
         title: Page information
-        template: @YAdmin/Page/_view.html.twig
+        template: @YCMS/page/view.html.twig
     handlers:
       load:
         - [ @cms.attribute, loadEditorTab ]
