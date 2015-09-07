@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <ul class="list-group attribute-list tags">
-        {%  if attributes is defined and attributes %}
-            {% for attr in attributes %}
+        {%  if moduleConfig.attributes is defined and moduleConfig.attributes %}
+            {% for attr in moduleConfig.attributes %}
                 {% include 'YCMSBundle:_attributes:' ~ attr.type ~'.html.twig' with { type : attr.type } %}
             {% endfor %}
         {% endif %}
